@@ -7,7 +7,7 @@
 
 ## About
 
-FastFileSystem is a high-performance, unified C++ file search engine that combines indexing, searching, and real-time file monitoring into a single modular API. Designed for embedding in applications requiring Everything-style file search capabilities, it provides zero-copy memory-mapped access, JNI bindings for Java integration, and incremental updates via USN Journal on Windows.
+FastFileSystem is a high-performance Java file search engine that combines indexing, searching, and real-time file monitoring through JNI bindings to native C++ code. Designed for Java applications requiring Everything-style file search capabilities, it provides zero-copy memory-mapped access and incremental updates via USN Journal on Windows.
 
 **Tags:** file-search, filesystem, indexing, mmap, usn-journal, jni, cpp, windows, autocomplete, fuzzy-search
 
