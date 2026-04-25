@@ -1,4 +1,4 @@
-# FastFileSystem
+# FastFileSystem - Unified file search engine with JNI bindings [ALPHA]
 
 [![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
 [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org)
