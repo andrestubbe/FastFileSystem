@@ -1,19 +1,20 @@
 # FastFileSystem
 
 [![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org)
+[![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
+[![JNI](https://img.shields.io/badge/JNI-Native-orange.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## About
 
-FastFileSystem is a high-performance, unified C++ file search engine that combines indexing, searching, and real-time file monitoring into a single modular API. Designed for embedding in applications requiring Everything-style file search capabilities, it provides zero-copy memory-mapped access, JNI bindings for Java integration, and incremental updates via USN Journal on Windows.
+FastFileSystem is a Java-native file search engine that combines high-performance C++ indexing, searching, and real-time file monitoring through JNI bindings. Designed for Java applications requiring Everything-style file search capabilities, it provides zero-copy memory-mapped access and incremental updates via USN Journal on Windows. The native C++ core delivers maximum performance while the Java API offers seamless integration with JVM applications.
 
-**Tags:** file-search, filesystem, indexing, mmap, usn-journal, jni, cpp, windows, autocomplete, fuzzy-search
+**Tags:** java, jni, file-search, filesystem, indexing, mmap, usn-journal, cpp, windows, autocomplete, fuzzy-search
 
 ## Overview
 
-FastFileSystem is a unified C++ module that encapsulates FastFileIndex, FastFileSearch, and FastFileWatch into a single API, along with JNI bindings for FastJava integration.
+FastFileSystem is a Java library that provides a unified API for high-performance file search. It uses native C++ code (via JNI) to handle indexing, searching, and real-time file monitoring, delivering native performance while maintaining a clean Java interface. The library integrates FastFileIndex, FastFileSearch, and FastFileWatch into a cohesive Java API for FastJava applications.
 
 ## High-Level Architecture
 
@@ -27,10 +28,11 @@ This is exactly the architecture used by Everything, Spotlight, VSCode, and fsea
 
 ## Features
 
-- Unified C++ module encapsulating Index + Search + Watch
-- Full mmap-based index access (no std::vector<FileEntry> primary structure)
+- Java library with native C++ core for maximum performance
 - JNI bindings with zero-copy (DirectByteBuffer + Offsets instead of String[])
 - Java reads directly from mmap without copies
+- Unified Java API combining Index + Search + Watch modules
+- Full mmap-based index access (no std::vector<FileEntry> primary structure)
 - Minimalistic, modular, high-performance
 - Zero overhead, no copies, no GC stress
 - Hot-reload capable (double mmap buffer + atomic pointer swap)
