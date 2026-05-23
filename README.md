@@ -1,5 +1,4 @@
-# FastFileSystem - Unified file search engine with JNI bindings [ALPHA]
-
+# FastFileSystem - Unified file search engine with JNI bindings  [ALPHA] - v0.1.0
 [![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
 [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
@@ -110,3 +109,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [FastFileSearch](https://github.com/andrestubbe/FastFileSearch) - Prefix Trie, N-Gram index, and Ranking engine
 - [FastFileWatch](https://github.com/andrestubbe/FastFileWatch) - USN Journal-based live file monitoring
 - [FastCore](https://github.com/andrestubbe/FastCore) - Unified JNI loader and platform abstraction
+
