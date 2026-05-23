@@ -1,9 +1,4 @@
 ﻿# FastFileSystem - Unified file search engine with JNI bindings  [ALPHA] - v0.1.0
-[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org)
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ## About
 
 FastFileSystem is a high-performance Java file search engine that combines indexing, searching, and real-time file monitoring through JNI bindings to native C++ code. Designed for Java applications requiring Everything-style file search capabilities, it provides zero-copy memory-mapped access and incremental updates via USN Journal on Windows.
