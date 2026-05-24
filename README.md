@@ -109,9 +109,13 @@ close();
 - **Linux** - Planned
 - **macOS** - Planned
 
+---
+
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License — See [LICENSE](LICENSE) file for details.
+
+---
 
 ## Related Projects
 
@@ -120,4 +124,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [FastFileWatch](https://github.com/andrestubbe/FastFileWatch) - USN Journal-based live file monitoring
 - [FastCore](https://github.com/andrestubbe/FastCore) - Unified JNI loader and platform abstraction
 
+---
 
+**Part of the FastJava Ecosystem** — *Making the JVM faster. Small package. Maximum speed. Zero bloat. 🚀📋*
