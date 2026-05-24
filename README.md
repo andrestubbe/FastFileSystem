@@ -1,13 +1,21 @@
-﻿# FastFileSystem - Unified file search engine with JNI bindings  [ALPHA] - v0.1.0
-## About
+﻿# FastFileSystem v0.1.0 [ALPHA] - Unified file search engine with JNI bindings for Java
 
-FastFileSystem is a high-performance Java file search engine that combines indexing, searching, and real-time file monitoring through JNI bindings to native C++ code. Designed for Java applications requiring Everything-style file search capabilities, it provides zero-copy memory-mapped access and incremental updates via USN Journal on Windows.
+[![Status](https://img.shields.io/badge/status-v0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastFileSystem/releases/tag/v0.1.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
+[![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe)
 
-**Tags:** file-search, filesystem, indexing, mmap, usn-journal, jni, cpp, windows, autocomplete, fuzzy-search
+FastFileSystem is a high-performance Java file search engine that combines indexing, searching, and real-time file
+monitoring through JNI bindings to native C++ code. Designed for Java applications requiring Everything-style file
+search capabilities, it provides zero-copy memory-mapped access and incremental updates via USN Journal on Windows.
+
+[![FastKeyboard Showcase](docs/screenshot.png)](https://www.youtube.com/watch?v=BZsqQl7WqWk)
 
 ## Overview
 
-FastFileSystem is a unified C++ module that encapsulates FastFileIndex, FastFileSearch, and FastFileWatch into a single API, along with JNI bindings for FastJava integration.
+FastFileSystem is a unified C++ module that encapsulates FastFileIndex, FastFileSearch, and FastFileWatch into a single
+API, along with JNI bindings for FastJava integration.
 
 ## High-Level Architecture
 
@@ -77,15 +85,22 @@ fs.recordOpen(results[0].id);
 
 ```java
 FastFileSystem fs = new FastFileSystem();
-fs.loadIndex("files.idx");
+fs.
+
+loadIndex("files.idx");
 
 SearchResult[] results = fs.search("fast", 64);
 
-for (SearchResult result : results) {
-    System.out.println(result.path);
+for(
+SearchResult result :results){
+        System.out.
+
+println(result.path);
 }
 
-fs.close();
+        fs.
+
+close();
 ```
 
 ## Platform Support
