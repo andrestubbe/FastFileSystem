@@ -6,11 +6,19 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
 [![JitPack](https://img.shields.io/badge/JitPack-ready-green.svg)](https://jitpack.io/#andrestubbe)
 
-FastFileSystem is a high-performance Java file search engine that combines indexing, searching, and real-time file
+---
+
+⚡ FastFileSystem is a high-performance Java file search engine that combines indexing, searching, and real-time file
 monitoring through JNI bindings to native C++ code. Designed for Java applications requiring Everything-style file
 search capabilities, it provides zero-copy memory-mapped access and incremental updates via USN Journal on Windows.
 
+
+
+---
+
 [![FastKeyboard Showcase](docs/screenshot.png)](https://www.youtube.com/watch?v=BZsqQl7WqWk)
+
+---
 
 ## Overview
 
