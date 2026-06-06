@@ -1,6 +1,6 @@
-# FastFileSystem v0.1.0 [ALPHA] - Unified file search engine with JNI bindings for Java
+# FastFileSystem 0.1.0 [ALPHA] - Unified file search engine with JNI bindings for Java
 
-[![Status](https://img.shields.io/badge/status-v0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastFileSystem/releases/tag/v0.1.0)
+[![Status](https://img.shields.io/badge/status-0.1.0-brightgreen.svg)](https://github.com/andrestubbe/FastFileSystem/releases/tag/0.1.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-17+-blue.svg)](https://www.java.com)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010+-lightgrey.svg)]()
@@ -33,7 +33,7 @@ Your three modules form a complete Everything-style file search engine:
 - **FastFileSearch** - Builds Prefix Trie, N-Gram index, Exact Match map, and Ranking engine on top of the index.
 - **FastFileWatch** - Uses USN Journal to keep the index + search structures live-updated with zero rescans.
 
-This is exactly the architecture used by Everything, Spotlight, VSCode, and fsearch � but modular and embeddable.
+This is exactly the architecture used by Everything, Spotlight, VSCode, and fsearch  but modular and embeddable.
 
 ## Features
 
@@ -59,7 +59,7 @@ You now have:
 - JNI bindings for FastJava
 - Unified C++ API
 
-This is a complete, production-grade file search engine � modular, embeddable, and faster than most existing tools.
+This is a complete, production-grade file search engine  modular, embeddable, and faster than most existing tools.
 
 ## Installation
 
@@ -127,14 +127,14 @@ close();
 | Platform      | Status            |
 |---------------|-------------------|
 | Windows 10/11 | ? Fully Supported |
-| Linux         | ?? Planned        |
-| macOS         | ?? Planned        |
+| Linux         | ðŸš€ Planned        |
+| macOS         | ðŸš€ Planned        |
 
 ---
 
 ## License
 
-MIT License � See [LICENSE](LICENSE) for details.
+MIT License  See [LICENSE](LICENSE) for details.
 
 ---
 
@@ -147,4 +147,4 @@ MIT License � See [LICENSE](LICENSE) for details.
 
 ---
 
-**Part of the FastJava Ecosystem** � *Making the JVM faster. Small package. Maximum speed. Zero bloat. ????*
+**Part of the FastJava Ecosystem**  *Making the JVM faster. Small package. Maximum speed. Zero bloat. ðŸš€ðŸš€*
