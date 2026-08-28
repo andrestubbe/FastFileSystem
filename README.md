@@ -51,7 +51,6 @@ public class Demo {
 - [Installation](#installation)
 - [Technical Examples & Hero Demos](#technical-examples--hero-demos)
 - [Platform Support](#platform-support)
-- [Modular Ecosystem](#modular-ecosystem)
 - [Related Projects](#related-projects)
 - [License](#license)
 
@@ -177,21 +176,13 @@ Run the hero demo locally from the command line:
 
 ---
 
-## Modular Ecosystem
-Combine FastFileSystem with other accelerators for maximum efficiency:
-* [**FastFileIndex**](https://github.com/andrestubbe/FastFileIndex) — Low-level binary index format.
-* [**FastFileSearch**](https://github.com/andrestubbe/FastFileSearch) — Trie & N-Gram search engine.
-* [**FastFileWatch**](https://github.com/andrestubbe/FastFileWatch) — NTFS USN Journal monitor.
-* [**FastFileContentIndex**](https://github.com/andrestubbe/FastFileContentIndex) — In-file 3-gram text bloom search.
-* [**FastCore**](https://github.com/andrestubbe/FastCore) — Unified JNI loader substrate.
-
----
-
 ## Related Projects
-- [FastFileIndex](https://github.com/andrestubbe/FastFileIndex) — Binary file indexing with mmap support
-- [FastFileSearch](https://github.com/andrestubbe/FastFileSearch) — Prefix Trie, N-Gram index, and Ranking engine
-- [FastFileWatch](https://github.com/andrestubbe/FastFileWatch) — USN Journal-based live file monitoring
-- [FastCore](https://github.com/andrestubbe/FastCore) — Native library loader for Java
+Combine FastFileSystem with other FastJava accelerators for maximum efficiency:
+* [**FastFileIndex**](https://github.com/andrestubbe/FastFileIndex) — Binary file indexing with zero-copy mmap support.
+* [**FastFileSearch**](https://github.com/andrestubbe/FastFileSearch) — Prefix Trie, N-Gram index, and Ranking engine.
+* [**FastFileWatch**](https://github.com/andrestubbe/FastFileWatch) — NTFS USN Journal-based live file change monitor.
+* [**FastFileContentIndex**](https://github.com/andrestubbe/FastFileContentIndex) — High-speed 3-gram bloom filter in-file search.
+* [**FastCore**](https://github.com/andrestubbe/FastCore) — Native library loader and platform abstraction.
 
 ---
 
