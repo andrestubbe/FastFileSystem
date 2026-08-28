@@ -55,7 +55,7 @@ public class Demo {
             // ── Phase 1: Sub-Microsecond Prefix Autocomplete Search ─────────
             System.out.println(darkGray("[Phase 1]") + " " + boldWhite("Prefix Autocomplete Query") + darkGray(" (Zero-allocation Trie Traversal)"));
 
-            String prefixQuery = "Fast";
+            String prefixQuery = "README.md";
             long qT0 = System.nanoTime();
             SearchResult[] prefixResults = fs.searchPrefix(prefixQuery, 10000);
             long qDurationNs = System.nanoTime() - qT0;
