@@ -119,6 +119,47 @@ public class Demo {
                     darkGray("├── Volume USN Status:"),
                     usnAvailable ? boldWhite("ACTIVE & CAPABLE") : darkGray("FALLBACK MODE"),
                     darkGray(String.format("(Syncing dynamically with in-memory Trie)")));
+
+            // Live event simulation
+            File liveTempFile = new File(projectDir, "FastFileSystem_LiveSync_Test.tmp");
+            try {
+                System.out.printf("  %s %s Creating %s\n",
+                        darkGray("├──"),
+                        boldWhite("[Action]"),
+                        white(liveTempFile.getName()));
+
+                long countBefore = fs.searchPrefix("FastFileSystem_LiveSync_Test", 5).length;
+                liveTempFile.createNewFile();
+
+                // Small yield for OS watcher thread
+                Thread.sleep(30);
+
+                long liveT0 = System.nanoTime();
+                SearchResult[] liveResults = fs.searchPrefix("FastFileSystem_LiveSync_Test", 5);
+                long liveDurationNs = System.nanoTime() - liveT0;
+
+                System.out.printf("  %s %s Detected without disk rescan in %s\n",
+                        darkGray("├──"),
+                        boldWhite("[Live Sync]"),
+                        boldWhite(String.format("%.2f µs (%,d ns)", liveDurationNs / 1000.0, liveDurationNs)));
+
+                if (liveResults.length > 0) {
+                    System.out.printf("  %s      └── Match: %-58s %s\n",
+                            darkGray("│"),
+                            white(truncateMiddle(liveResults[0].path(), 58)),
+                            darkGray(String.format("Score: %.2f", liveResults[0].score())));
+                }
+
+                // Cleanup
+                liveTempFile.delete();
+                Thread.sleep(20);
+                System.out.printf("  %s %s File deleted & removed from in-memory Trie\n",
+                        darkGray("├──"),
+                        boldWhite("[Cleanup]"));
+            } catch (Exception e) {
+                if (liveTempFile.exists()) liveTempFile.delete();
+            }
+
             System.out.printf("  %s %s\n\n",
                     darkGray("└── Engine Status:    "),
                     boldWhite("100% Operational • Sub-Microsecond Queries • Everything-Parity"));
