@@ -114,10 +114,27 @@ Add the JitPack repository and the dependencies to your `pom.xml`:
 </repositories>
 
 <dependencies>
-    <!-- FastFileSystem Library -->
+    <!-- FastFileSystem Core Engine -->
     <dependency>
         <groupId>com.github.andrestubbe</groupId>
         <artifactId>FastFileSystem</artifactId>
+        <version>0.1.0</version>
+    </dependency>
+
+    <!-- FastFile Ecosystem Modules -->
+    <dependency>
+        <groupId>com.github.andrestubbe</groupId>
+        <artifactId>FastFileIndex</artifactId>
+        <version>0.1.1</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.andrestubbe</groupId>
+        <artifactId>FastFileSearch</artifactId>
+        <version>0.1.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.andrestubbe</groupId>
+        <artifactId>FastFileWatch</artifactId>
         <version>0.1.0</version>
     </dependency>
 
@@ -138,6 +155,9 @@ repositories {
 
 dependencies {
     implementation 'com.github.andrestubbe:FastFileSystem:0.1.0'
+    implementation 'com.github.andrestubbe:FastFileIndex:0.1.1'
+    implementation 'com.github.andrestubbe:FastFileSearch:0.1.0'
+    implementation 'com.github.andrestubbe:FastFileWatch:0.1.0'
     implementation 'com.github.andrestubbe:FastCore:0.1.0'
 }
 ```
@@ -146,7 +166,10 @@ dependencies {
 Download the latest JARs directly to add them to your classpath:
 
 1. 📦 **[FastFileSystem-0.1.0.jar](https://github.com/andrestubbe/FastFileSystem/releases/download/0.1.0/FastFileSystem-0.1.0.jar)** (The Core Engine)
-2. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (The Mandatory Native Loader)
+2. 🗂️ **[FastFileIndex-0.1.1.jar](https://github.com/andrestubbe/FastFileIndex/releases/download/0.1.1/FastFileIndex-0.1.1.jar)** (mmap Indexing Substrate)
+3. 🔍 **[FastFileSearch-0.1.0.jar](https://github.com/andrestubbe/FastFileSearch/releases/download/0.1.0/FastFileSearch-0.1.0.jar)** (Trie & N-Gram Search Engine)
+4. ⏱️ **[FastFileWatch-0.1.0.jar](https://github.com/andrestubbe/FastFileWatch/releases/download/0.1.0/FastFileWatch-0.1.0.jar)** (NTFS USN Journal Live Sync)
+5. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (The Mandatory Native Loader)
 
 > [!IMPORTANT]
 > All JARs must be in your classpath for the native JNI calls to function correctly.
