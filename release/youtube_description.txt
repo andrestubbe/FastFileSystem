@@ -1,0 +1,29 @@
+TITLE:
+FastFileSystem: Unified Indexing, Prefix Trie Search & NTFS USN Live-Sync Engine for Java (Everything-Parity) ⚡📁
+
+DESCRIPTION:
+Showcasing FastFileSystem, the high-performance unified filesystem indexing, autocomplete searching, and NTFS USN Journal live-synchronization engine of the FastJava ecosystem. Watch FastFileSystem mount and scan 38,000+ files across a large workspace in milliseconds, execute sub-microsecond prefix autocomplete and fuzzy searches with zero JVM heap allocations, and synchronize live filesystem events in real-time without touching the disk.
+
+FastFileSystem bridges FastFileIndex (mmap binary scanning), FastFileSearch (Prefix Trie & N-Gram search), and FastFileWatch (NTFS USN Journal live updates) into a unified, high-level Java API—delivering Voidtools Everything-style speed directly on the JVM.
+
+TECHNICAL HIGHLIGHTS:
+- Zero-Copy Memory-Mapped Indexing: Maps storage trees directly via mmap (CreateFileMapping / MapViewOfFile) in native memory in < 1-3 ms.
+- Sub-Microsecond Trie & N-Gram Queries: Autocompletes path prefixes and substring matches with zero per-query GC allocations.
+- Real-Time NTFS USN Journal Synchronization: Hardware-level change tracking (FSCTL_READ_USN_JOURNAL) updating in-memory search tries in microseconds without disk rescans.
+- Single Source of Truth: Eliminates multi-module heap duplication through contiguous native pointer representations.
+- FastANSI 120-Column Terminal HUD: Clean dark-gray framing with bold white performance telemetry and middle-truncated path visualization.
+
+GITHUB REPOSITORIES:
+https://github.com/andrestubbe/FastFileSystem
+https://github.com/andrestubbe/FastFileIndex
+https://github.com/andrestubbe/FastFileSearch
+https://github.com/andrestubbe/FastFileWatch
+https://github.com/andrestubbe/FastCore
+https://github.com/andrestubbe/FastJava
+
+PHILOSOPHY:
+No copies. Ever. Critical paths. Native-First performance.
+If you're interested in pushing the JVM to its absolute limits, subscribe for more.
+
+TAGS:
+Java, FastJava, FastFileSystem, FastFileIndex, FastFileSearch, FastFileWatch, NTFS, USN Journal, File Search, Autocomplete, Trie, Performance, Zero-Copy, mmap, Tech Demo
