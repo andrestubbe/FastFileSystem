@@ -4,8 +4,6 @@ import fastansi.FastANSI;
 import fastfilesearch.SearchResult;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * FastFileSystem — High-Performance Unified Filesystem Hero Demo.
@@ -16,9 +14,17 @@ public class Demo {
 
     private Demo() {}
 
-    private static String darkGray(String text) { return FastANSI.darkGray(text); }
-    private static String white(String text)    { return FastANSI.white(text); }
-    private static String boldWhite(String text){ return FastANSI.boldWhite(text); }
+    private static String darkGray(String text) {
+        return FastANSI.fg(240) + text + FastANSI.RESET;
+    }
+
+    private static String white(String text) {
+        return FastANSI.FG_BRIGHT_WHITE + text + FastANSI.RESET;
+    }
+
+    private static String boldWhite(String text) {
+        return FastANSI.BOLD + FastANSI.FG_BRIGHT_WHITE + text + FastANSI.RESET;
+    }
 
     public static void main(String[] args) throws Exception {
         System.out.println(darkGray("========================================================================================================================"));
@@ -71,10 +77,10 @@ public class Demo {
                     boolean isLastMatch = (j == results.length - 1);
                     String mBranch = isLastMatch ? "└──" : "├──";
                     SearchResult r = results[j];
-                    System.out.printf("%s  %s ID: %-8s %s\n",
+                    System.out.printf("%s  %s Path: %-48s %s\n",
                             subIndent,
                             darkGray(mBranch),
-                            white(String.valueOf(r.id())),
+                            white(truncate(r.path(), 48)),
                             darkGray(String.format("Score: %.2f", r.score())));
                 }
             }
@@ -105,10 +111,10 @@ public class Demo {
                     boolean isLastMatch = (j == results.length - 1);
                     String mBranch = isLastMatch ? "└──" : "├──";
                     SearchResult r = results[j];
-                    System.out.printf("%s  %s ID: %-8s %s\n",
+                    System.out.printf("%s  %s Path: %-48s %s\n",
                             subIndent,
                             darkGray(mBranch),
-                            white(String.valueOf(r.id())),
+                            white(truncate(r.path(), 48)),
                             darkGray(String.format("Score: %.2f", r.score())));
                 }
             }
@@ -129,5 +135,11 @@ public class Demo {
             System.err.println("[FastFileSystem] Demo Execution Error: " + t.getMessage());
             t.printStackTrace();
         }
+    }
+
+    private static String truncate(String text, int maxLen) {
+        if (text == null) return "";
+        if (text.length() <= maxLen) return text;
+        return text.substring(0, maxLen - 3) + "...";
     }
 }

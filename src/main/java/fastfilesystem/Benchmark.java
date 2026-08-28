@@ -20,9 +20,17 @@ public class Benchmark {
 
     private Benchmark() {}
 
-    private static String darkGray(String text) { return FastANSI.darkGray(text); }
-    private static String white(String text)    { return FastANSI.white(text); }
-    private static String boldWhite(String text){ return FastANSI.boldWhite(text); }
+    private static String darkGray(String text) {
+        return FastANSI.fg(240) + text + FastANSI.RESET;
+    }
+
+    private static String white(String text) {
+        return FastANSI.FG_BRIGHT_WHITE + text + FastANSI.RESET;
+    }
+
+    private static String boldWhite(String text) {
+        return FastANSI.BOLD + FastANSI.FG_BRIGHT_WHITE + text + FastANSI.RESET;
+    }
 
     public static void main(String[] args) throws Exception {
         System.out.println(darkGray("========================================================================================================================"));
