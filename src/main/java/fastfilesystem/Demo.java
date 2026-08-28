@@ -52,6 +52,12 @@ public class Demo {
                     boldWhite(String.format("%,d total filesystem entries", count)),
                     boldWhite(String.format("%,d ms", scanTimeMs)));
 
+            // ── Silent Warmup (Warms JNI Reflections, JIT Compiler, and Branch Predictor) ──
+            for (int w = 0; w < 50; w++) {
+                fs.searchPrefix("warmup", 5);
+                fs.searchFuzzy("warmup", 5);
+            }
+
             // ── Phase 1: Sub-Microsecond Prefix Autocomplete Search ─────────
             System.out.println(darkGray("[Phase 1]") + " " + boldWhite("Prefix Autocomplete Query") + darkGray(" (Zero-allocation Trie Traversal)"));
 
