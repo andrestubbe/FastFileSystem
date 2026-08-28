@@ -50,6 +50,7 @@ public class Demo {
 - [API Quick Reference](#api-quick-reference)
 - [Installation](#installation)
 - [Technical Examples & Hero Demos](#technical-examples--hero-demos)
+- [Documentation](#documentation)
 - [Platform Support](#platform-support)
 - [Related Projects](#related-projects)
 - [License](#license)
@@ -163,6 +164,15 @@ Run the hero demo locally from the command line:
 ```bash
 .\run-demo.bat
 ```
+
+---
+
+## Documentation
+
+* **[REFERENCE.md](docs/REFERENCE.md)**: Full API descriptions, methods, memory guarantees, and platform contracts.
+* **[PHILOSOPHY.md](docs/PHILOSOPHY.md)**: The architectural rationale for unified zero-copy indexing and live-sync.
+* **[ROADMAP.md](docs/ROADMAP.md)**: Future milestones, Linux fanotify/inotify, and macOS FSEvents integration.
+* **[CHANGELOG.md](docs/CHANGELOG.md)**: Release history and version migration details.
 
 ---
 
