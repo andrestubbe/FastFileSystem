@@ -122,7 +122,7 @@ try (FastFileSystem fs = FastFileSystem.mount("C:\\Workspaces\\FastJava")) {
 }
 ```
 
-### 2. High-Speed IDE Fuzzy File Search (`Ctrl + P`)
+### 2. High-Speed IDE Fuzzy File Search
 Instant fuzzy filename resolution across millions of files with sub-microsecond latency:
 ```java
 FastFileSystem fs = FastFileSystem.mount("C:\\Projects");
