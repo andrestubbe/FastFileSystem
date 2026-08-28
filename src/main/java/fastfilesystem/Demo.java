@@ -53,84 +53,64 @@ public class Demo {
                     boldWhite(String.format("%,d ms", scanTimeMs)));
 
             // ── Phase 1: Sub-Microsecond Prefix Autocomplete Search ─────────
-            System.out.println(darkGray("[Phase 1]") + " " + boldWhite("Prefix Autocomplete Queries") + darkGray(" (Zero-allocation Trie Traversals — All Matches)"));
+            System.out.println(darkGray("[Phase 1]") + " " + boldWhite("Prefix Autocomplete Query") + darkGray(" (Zero-allocation Trie Traversal)"));
 
-            String[] prefixQueries = new String[]{ "pom", "Fast", "Demo", "src", "README" };
-            for (int i = 0; i < prefixQueries.length; i++) {
-                String q = prefixQueries[i];
-                boolean isLast = (i == prefixQueries.length - 1);
-                String branch = isLast ? "└──" : "├──";
-                String subIndent = isLast ? "     " : "  │  ";
+            String prefixQuery = "Fast";
+            long qT0 = System.nanoTime();
+            SearchResult[] prefixResults = fs.searchPrefix(prefixQuery, 10000);
+            long qDurationNs = System.nanoTime() - qT0;
+            double qDurationUs = qDurationNs / 1000.0;
 
-                long qT0 = System.nanoTime();
-                SearchResult[] results = fs.searchPrefix(q, 10000);
-                long qDurationNs = System.nanoTime() - qT0;
-                double qDurationUs = qDurationNs / 1000.0;
+            System.out.printf("  %s %s Query %-14s %s %s\n",
+                    darkGray("└──"),
+                    boldWhite("[01]"),
+                    boldWhite("\"" + prefixQuery + "\""),
+                    darkGray(String.format("| %,d total matches", prefixResults.length)),
+                    boldWhite(String.format("| %.2f µs (%,d ns)", qDurationUs, qDurationNs)));
 
-                System.out.printf("  %s %s Query %-16s %s %s\n",
-                        darkGray(branch),
-                        boldWhite(String.format("[%02d]", i + 1)),
-                        boldWhite("\"" + q + "\""),
-                        darkGray(String.format("| %,d total matches", results.length)),
-                        boldWhite(String.format("| %.2f µs (%,d ns)", qDurationUs, qDurationNs)));
-
-                for (int j = 0; j < results.length; j++) {
-                    boolean isLastMatch = (j == results.length - 1);
-                    String mBranch = isLastMatch ? "└──" : "├──";
-                    SearchResult r = results[j];
-                    System.out.printf("%s  %s [%02d] %-60s %s\n",
-                            subIndent,
-                            darkGray(mBranch),
-                            j + 1,
-                            white(r.path()),
-                            darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
-                }
-                System.out.printf("%s  %s Exact Search Time: %s\n",
-                        subIndent,
-                        darkGray("✦"),
-                        boldWhite(String.format("%.3f µs (%,d ns)", qDurationUs, qDurationNs)));
+            for (int j = 0; j < prefixResults.length; j++) {
+                boolean isLastMatch = (j == prefixResults.length - 1);
+                String mBranch = isLastMatch ? "└──" : "├──";
+                SearchResult r = prefixResults[j];
+                System.out.printf("       %s [%02d] %-54s %s\n",
+                        darkGray(mBranch),
+                        j + 1,
+                        white(truncateMiddle(r.path(), 54)),
+                        darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
             }
-            System.out.println();
+            System.out.printf("       %s Exact Search Time: %s\n\n",
+                    darkGray("✦"),
+                    boldWhite(String.format("%.3f µs (%,d ns)", qDurationUs, qDurationNs)));
 
             // ── Phase 2: N-Gram Substring & Fuzzy Search ────────────────────
-            System.out.println(darkGray("[Phase 2]") + " " + boldWhite("Fuzzy & N-Gram Search Queries") + darkGray(" (Tolerance & Substring Matching — All Matches)"));
+            System.out.println(darkGray("[Phase 2]") + " " + boldWhite("Fuzzy & N-Gram Search Query") + darkGray(" (Tolerance & Substring Matching)"));
 
-            String[] fuzzyQueries = new String[]{ "system", "search", "spider", "format" };
-            for (int i = 0; i < fuzzyQueries.length; i++) {
-                String q = fuzzyQueries[i];
-                boolean isLast = (i == fuzzyQueries.length - 1);
-                String branch = isLast ? "└──" : "├──";
-                String subIndent = isLast ? "     " : "  │  ";
+            String fuzzyQuery = "system";
+            long fT0 = System.nanoTime();
+            SearchResult[] fuzzyResults = fs.searchFuzzy(fuzzyQuery, 10000);
+            long fDurationNs = System.nanoTime() - fT0;
+            double fDurationUs = fDurationNs / 1000.0;
 
-                long qT0 = System.nanoTime();
-                SearchResult[] results = fs.searchFuzzy(q, 10000);
-                long qDurationNs = System.nanoTime() - qT0;
-                double qDurationUs = qDurationNs / 1000.0;
+            System.out.printf("  %s %s Fuzzy %-14s %s %s\n",
+                    darkGray("└──"),
+                    boldWhite("[01]"),
+                    boldWhite("\"" + fuzzyQuery + "\""),
+                    darkGray(String.format("| %,d total matches", fuzzyResults.length)),
+                    boldWhite(String.format("| %.2f µs (%,d ns)", fDurationUs, fDurationNs)));
 
-                System.out.printf("  %s %s Fuzzy %-16s %s %s\n",
-                        darkGray(branch),
-                        boldWhite(String.format("[%02d]", i + 1)),
-                        boldWhite("\"" + q + "\""),
-                        darkGray(String.format("| %,d total matches", results.length)),
-                        boldWhite(String.format("| %.2f µs (%,d ns)", qDurationUs, qDurationNs)));
-
-                for (int j = 0; j < results.length; j++) {
-                    boolean isLastMatch = (j == results.length - 1);
-                    String mBranch = isLastMatch ? "└──" : "├──";
-                    SearchResult r = results[j];
-                    System.out.printf("%s  %s [%02d] %-60s %s\n",
-                            subIndent,
-                            darkGray(mBranch),
-                            j + 1,
-                            white(r.path()),
-                            darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
-                }
-                System.out.printf("%s  %s Exact Search Time: %s\n",
-                        subIndent,
-                        darkGray("✦"),
-                        boldWhite(String.format("%.3f µs (%,d ns)", qDurationUs, qDurationNs)));
+            for (int j = 0; j < fuzzyResults.length; j++) {
+                boolean isLastMatch = (j == fuzzyResults.length - 1);
+                String mBranch = isLastMatch ? "└──" : "├──";
+                SearchResult r = fuzzyResults[j];
+                System.out.printf("       %s [%02d] %-54s %s\n",
+                        darkGray(mBranch),
+                        j + 1,
+                        white(truncateMiddle(r.path(), 54)),
+                        darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
             }
-            System.out.println();
+            System.out.printf("       %s Exact Search Time: %s\n\n",
+                    darkGray("✦"),
+                    boldWhite(String.format("%.3f µs (%,d ns)", fDurationUs, fDurationNs)));
 
             // ── Phase 3: Real-Time NTFS USN Journal Liveness Status ─────────
             System.out.println(darkGray("[Phase 3]") + " " + boldWhite("Live USN Journal Change Synchronizer") + darkGray(" (Zero-Rescan Background Stream)"));
@@ -149,9 +129,19 @@ public class Demo {
         }
     }
 
-    private static String truncate(String text, int maxLen) {
+    /**
+     * Middle truncation keeping the root drive and the actual filename visible:
+     * e.g. "C:\Users\andre\...\FastFileSystem\pom.xml"
+     */
+    private static String truncateMiddle(String text, int maxLen) {
         if (text == null) return "";
         if (text.length() <= maxLen) return text;
-        return text.substring(0, maxLen - 3) + "...";
+        
+        int prefixLen = 18; // e.g. "C:\Users\andre\..."
+        int suffixLen = maxLen - prefixLen - 5; // room for " ... "
+        if (suffixLen <= 0) {
+            return text.substring(0, maxLen - 3) + "...";
+        }
+        return text.substring(0, prefixLen) + " ... " + text.substring(text.length() - suffixLen);
     }
 }
