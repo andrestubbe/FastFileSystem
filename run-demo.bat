@@ -1,8 +1,18 @@
 @echo off
 chcp 65001 >nul
+setlocal enabledelayedexpansion
 cd /d "%~dp0"
-echo [FastFileSystem] Running Demo (via JitPack)...
-cd examples\Demo
-call mvn compile exec:java -Dexec.mainClass=fastfilesystem.Demo
-cd ..\..
+
+echo [FastFileSystem] Building Core Library...
+call mvn clean compile -q
+if errorlevel 1 (
+    echo [ERROR] Maven compilation failed!
+    pause
+    exit /b 1
+)
+
+echo [FastFileSystem] Running Interactive Hero Demo...
+echo.
+call mvn exec:java -Dexec.mainClass=fastfilesystem.Demo -q
+echo.
 pause
