@@ -232,6 +232,7 @@ Explore the complete source configurations and benchmarks:
 
 * **⚡ Interactive Live Stream Demo**: [Demo.java](src/main/java/fastfilesystem/Demo.java) (`.\run-demo.bat`) — Real-time mounting, prefix autocompletion, and live USN Journal monitoring demo.
 * **📈 Multi-Tier Comparison**: [Benchmark.java](src/main/java/fastfilesystem/Benchmark.java) (`.\run-compare.bat`) — Races FastFileSystem against standard Java across 3 tiers (Scan, Prefix Trie, Fuzzy).
+* **🚀 OpenJDK JMH Benchmark**: [FastFileSystemJmhBenchmark.java](examples/Benchmark/src/main/java/fastfilesystem/benchmark/FastFileSystemJmhBenchmark.java) (`.\run-benchmark.bat`) — Formal JMH microbenchmarks measuring throughput (ops/ms).
 * **🧪 Test Suite**: [FastFileSystemTest.java](src/test/java/fastfilesystem/FastFileSystemTest.java) — Comprehensive JUnit 5 validation.
 
 Run the hero demo locally from the command line:
