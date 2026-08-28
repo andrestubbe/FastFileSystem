@@ -31,7 +31,7 @@ public class Demo {
             // 2. Sub-microsecond prefix autocomplete search
             SearchResult[] results = fs.searchPrefix("pom", 10);
             for (SearchResult r : results) {
-                System.out.println("Match ID: " + r.id() + " | Score: " + r.score());
+                System.out.println("Match: " + r.path() + " (Score: " + r.score() + ")");
             }
 
             // 3. High-speed fuzzy N-Gram search
@@ -52,6 +52,7 @@ public class Demo {
 - [Technical Examples & Hero Demos](#technical-examples--hero-demos)
 - [Platform Support](#platform-support)
 - [Modular Ecosystem](#modular-ecosystem)
+- [Related Projects](#related-projects)
 - [License](#license)
 
 ---
@@ -91,10 +92,10 @@ Measured on **Windows 11 x64 (NVMe SSD)** with ~150,000 workspace files.
 
 | Method | Description | Target Path |
 |---|---|---|
-| `FastFileSystem.mount(...)` | Mounts root paths, builds mmap index and starts USN watcher. | [Reference →](docs/REFERENCE.md#mount) |
-| `searchPrefix(query, max)` | Instant prefix/autocomplete search across all indexed paths. | [Reference →](docs/REFERENCE.md#searchprefix) |
-| `searchFuzzy(query, max)` | N-gram based fuzzy substring search with error tolerance. | [Reference →](docs/REFERENCE.md#searchfuzzy) |
-| `searchExact(filename)` | $O(1)$ exact filename match lookup. | [Reference →](docs/REFERENCE.md#searchexact) |
+| `FastFileSystem.mount(...)` | Mounts root paths, builds mmap index and starts USN watcher. | [Reference →](docs/REFERENCE.md#fastfilesystemmountstring-roots) |
+| `searchPrefix(query, max)` | Instant prefix/autocomplete search across all indexed paths. | [Reference →](docs/REFERENCE.md#searchprefixstring-query-int-maxresults) |
+| `searchFuzzy(query, max)` | N-gram based fuzzy substring search with error tolerance. | [Reference →](docs/REFERENCE.md#searchfuzzystring-query-int-maxresults) |
+| `searchExact(filename)` | $O(1)$ exact filename match lookup. | [Reference →](docs/REFERENCE.md#searchexactstring-filename) |
 | `entryCount()` | Returns total count of indexed files and directories. | [Reference →](docs/REFERENCE.md#entrycount) |
 
 ---
@@ -102,6 +103,8 @@ Measured on **Windows 11 x64 (NVMe SSD)** with ~150,000 workspace files.
 ## Installation
 
 ### Option 1: Maven (Recommended)
+Add the JitPack repository and the dependencies to your `pom.xml`:
+
 ```xml
 <repositories>
     <repository>
@@ -139,6 +142,15 @@ dependencies {
 }
 ```
 
+### Option 3: Direct Download (No Build Tool)
+Download the latest JARs directly to add them to your classpath:
+
+1. 📦 **[FastFileSystem-0.1.0.jar](https://github.com/andrestubbe/FastFileSystem/releases/download/0.1.0/FastFileSystem-0.1.0.jar)** (The Core Engine)
+2. ⚙️ **[fastcore-0.1.0.jar](https://github.com/andrestubbe/FastCore/releases/download/0.1.0/fastcore-0.1.0.jar)** (The Mandatory Native Loader)
+
+> [!IMPORTANT]
+> All JARs must be in your classpath for the native JNI calls to function correctly.
+
 ---
 
 ## Technical Examples & Hero Demos
@@ -170,10 +182,23 @@ Combine FastFileSystem with other accelerators for maximum efficiency:
 * [**FastFileIndex**](https://github.com/andrestubbe/FastFileIndex) — Low-level binary index format.
 * [**FastFileSearch**](https://github.com/andrestubbe/FastFileSearch) — Trie & N-Gram search engine.
 * [**FastFileWatch**](https://github.com/andrestubbe/FastFileWatch) — NTFS USN Journal monitor.
+* [**FastFileContentIndex**](https://github.com/andrestubbe/FastFileContentIndex) — In-file 3-gram text bloom search.
 * [**FastCore**](https://github.com/andrestubbe/FastCore) — Unified JNI loader substrate.
+
+---
+
+## Related Projects
+- [FastFileIndex](https://github.com/andrestubbe/FastFileIndex) — Binary file indexing with mmap support
+- [FastFileSearch](https://github.com/andrestubbe/FastFileSearch) — Prefix Trie, N-Gram index, and Ranking engine
+- [FastFileWatch](https://github.com/andrestubbe/FastFileWatch) — USN Journal-based live file monitoring
+- [FastCore](https://github.com/andrestubbe/FastCore) — Native library loader for Java
 
 ---
 
 ## License
 
 MIT License — See [LICENSE](LICENSE) for details.
+
+---
+
+**Part of the FastJava Ecosystem** — *Making the JVM faster.*
