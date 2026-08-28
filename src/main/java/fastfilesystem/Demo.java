@@ -53,7 +53,7 @@ public class Demo {
                     boldWhite(String.format("%,d ms", scanTimeMs)));
 
             // ── Phase 1: Sub-Microsecond Prefix Autocomplete Search ─────────
-            System.out.println(darkGray("[Phase 1]") + " " + boldWhite("Prefix Autocomplete Queries") + darkGray(" (Zero-allocation Trie Traversals)"));
+            System.out.println(darkGray("[Phase 1]") + " " + boldWhite("Prefix Autocomplete Queries") + darkGray(" (Zero-allocation Trie Traversals — All Matches)"));
 
             String[] prefixQueries = new String[]{ "pom", "Fast", "Demo", "src", "README" };
             for (int i = 0; i < prefixQueries.length; i++) {
@@ -63,31 +63,37 @@ public class Demo {
                 String subIndent = isLast ? "     " : "  │  ";
 
                 long qT0 = System.nanoTime();
-                SearchResult[] results = fs.searchPrefix(q, 4);
-                long qUs = (System.nanoTime() - qT0) / 1000;
+                SearchResult[] results = fs.searchPrefix(q, 10000);
+                long qDurationNs = System.nanoTime() - qT0;
+                double qDurationUs = qDurationNs / 1000.0;
 
                 System.out.printf("  %s %s Query %-16s %s %s\n",
                         darkGray(branch),
                         boldWhite(String.format("[%02d]", i + 1)),
                         boldWhite("\"" + q + "\""),
-                        darkGray(String.format("| %,2d matches", results.length)),
-                        boldWhite(String.format("| %,4d µs", qUs)));
+                        darkGray(String.format("| %,d total matches", results.length)),
+                        boldWhite(String.format("| %.2f µs (%,d ns)", qDurationUs, qDurationNs)));
 
                 for (int j = 0; j < results.length; j++) {
                     boolean isLastMatch = (j == results.length - 1);
                     String mBranch = isLastMatch ? "└──" : "├──";
                     SearchResult r = results[j];
-                    System.out.printf("%s  %s Path: %-48s %s\n",
+                    System.out.printf("%s  %s [%02d] %-60s %s\n",
                             subIndent,
                             darkGray(mBranch),
-                            white(truncate(r.path(), 48)),
-                            darkGray(String.format("Score: %.2f", r.score())));
+                            j + 1,
+                            white(r.path()),
+                            darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
                 }
+                System.out.printf("%s  %s Exact Search Time: %s\n",
+                        subIndent,
+                        darkGray("✦"),
+                        boldWhite(String.format("%.3f µs (%,d ns)", qDurationUs, qDurationNs)));
             }
             System.out.println();
 
             // ── Phase 2: N-Gram Substring & Fuzzy Search ────────────────────
-            System.out.println(darkGray("[Phase 2]") + " " + boldWhite("Fuzzy & N-Gram Search Queries") + darkGray(" (Tolerance & Substring Matching)"));
+            System.out.println(darkGray("[Phase 2]") + " " + boldWhite("Fuzzy & N-Gram Search Queries") + darkGray(" (Tolerance & Substring Matching — All Matches)"));
 
             String[] fuzzyQueries = new String[]{ "system", "search", "spider", "format" };
             for (int i = 0; i < fuzzyQueries.length; i++) {
@@ -97,26 +103,32 @@ public class Demo {
                 String subIndent = isLast ? "     " : "  │  ";
 
                 long qT0 = System.nanoTime();
-                SearchResult[] results = fs.searchFuzzy(q, 3);
-                long qUs = (System.nanoTime() - qT0) / 1000;
+                SearchResult[] results = fs.searchFuzzy(q, 10000);
+                long qDurationNs = System.nanoTime() - qT0;
+                double qDurationUs = qDurationNs / 1000.0;
 
                 System.out.printf("  %s %s Fuzzy %-16s %s %s\n",
                         darkGray(branch),
                         boldWhite(String.format("[%02d]", i + 1)),
                         boldWhite("\"" + q + "\""),
-                        darkGray(String.format("| %,2d matches", results.length)),
-                        boldWhite(String.format("| %,4d µs", qUs)));
+                        darkGray(String.format("| %,d total matches", results.length)),
+                        boldWhite(String.format("| %.2f µs (%,d ns)", qDurationUs, qDurationNs)));
 
                 for (int j = 0; j < results.length; j++) {
                     boolean isLastMatch = (j == results.length - 1);
                     String mBranch = isLastMatch ? "└──" : "├──";
                     SearchResult r = results[j];
-                    System.out.printf("%s  %s Path: %-48s %s\n",
+                    System.out.printf("%s  %s [%02d] %-60s %s\n",
                             subIndent,
                             darkGray(mBranch),
-                            white(truncate(r.path(), 48)),
-                            darkGray(String.format("Score: %.2f", r.score())));
+                            j + 1,
+                            white(r.path()),
+                            darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
                 }
+                System.out.printf("%s  %s Exact Search Time: %s\n",
+                        subIndent,
+                        darkGray("✦"),
+                        boldWhite(String.format("%.3f µs (%,d ns)", qDurationUs, qDurationNs)));
             }
             System.out.println();
 
