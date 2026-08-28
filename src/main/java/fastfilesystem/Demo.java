@@ -72,10 +72,10 @@ public class Demo {
                 boolean isLastMatch = (j == prefixResults.length - 1);
                 String mBranch = isLastMatch ? "└──" : "├──";
                 SearchResult r = prefixResults[j];
-                System.out.printf("       %s [%02d] %-54s %s\n",
+                System.out.printf("       %s [%02d] %-76s %s\n",
                         darkGray(mBranch),
                         j + 1,
-                        white(truncateMiddle(r.path(), 54)),
+                        white(truncateMiddle(r.path(), 76)),
                         darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
             }
             System.out.printf("       %s Exact Search Time: %s\n\n",
@@ -102,10 +102,10 @@ public class Demo {
                 boolean isLastMatch = (j == fuzzyResults.length - 1);
                 String mBranch = isLastMatch ? "└──" : "├──";
                 SearchResult r = fuzzyResults[j];
-                System.out.printf("       %s [%02d] %-54s %s\n",
+                System.out.printf("       %s [%02d] %-76s %s\n",
                         darkGray(mBranch),
                         j + 1,
-                        white(truncateMiddle(r.path(), 54)),
+                        white(truncateMiddle(r.path(), 76)),
                         darkGray(String.format("Score: %.2f | %,d B", r.score(), r.fileSize())));
             }
             System.out.printf("       %s Exact Search Time: %s\n\n",
@@ -137,7 +137,7 @@ public class Demo {
         if (text == null) return "";
         if (text.length() <= maxLen) return text;
         
-        int prefixLen = 18; // e.g. "C:\Users\andre\..."
+        int prefixLen = 26; // e.g. "C:\Users\andre\Documents\..."
         int suffixLen = maxLen - prefixLen - 5; // room for " ... "
         if (suffixLen <= 0) {
             return text.substring(0, maxLen - 3) + "...";
