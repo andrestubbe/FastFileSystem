@@ -12,7 +12,7 @@
 
 FastFileSystem is the storage-indexing substrate of the **FastJava** ecosystem. It unifies **FastFileIndex** (zero-copy `mmap` scanning), **FastFileSearch** (Prefix Trie / N-Gram fuzzy search), and **FastFileWatch** (NTFS USN Journal live change detection) into a single, cohesive, sub-microsecond Java API—delivering *Everything*-style file search capabilities without Java heap overhead.
 
-[**Watch Demo (YouTube)**](https://youtu.be/NWfh47SGAHc) 
+[**Watch Demo (YouTube)**](https://youtu.be/NWfh47SGAHc) | [**Watch JMH Benchmark (Youtube)**]
 
 [![FastFileSystem Showcase](docs/screenshot.png)](https://youtu.be/NWfh47SGAHc)
 
