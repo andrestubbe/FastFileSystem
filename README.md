@@ -76,6 +76,13 @@ Standard Java filesystem operations (`java.nio.file.Files.walk`, `WatchService`,
 2. **Sub-Microsecond Trie Traversal**: Search structures operate directly on contiguous native pointers with zero object allocations during autocomplete queries.
 3. **Hardware-Level USN Journal Synchronization**: Listens directly to the Windows NTFS USN Journal (`FSCTL_READ_USN_JOURNAL`), applying file events to the in-memory Trie in microseconds without touching the disk.
 
+| Feature | java.nio.file (Walk + Watch) | Apache Commons IO | FastFileSystem |
+|:---|:---|:---|:---|
+| **Tree Traversal** | Recursive heap object churn | Recursive File[] scanning | **Win32 `mmap` binary index (< 3 ms)** |
+| **Search Queries** | Sequential disk / name scan | Linear list search | **Sub-microsecond native Trie / N-Gram** |
+| **Live Sync** | Polling `WatchService` (drops events)| Polling threads | **NTFS USN Journal live event stream** |
+| **Heap / GC Overhead** | Millions of Path / String objects | Heavy File object allocations | **Zero GC unified native memory** |
+
 ---
 
 ## Key Features
